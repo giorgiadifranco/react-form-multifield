@@ -2,17 +2,25 @@ import { useState } from 'react'
 
 import './App.css'
 
-const articles = [
+const initialArticles = [
 
-  
-
+ 
 ]
 
 function App() {
 
-  const [titles, setTitles] = useState(articles)
+  const [titles, setTitles] = useState(initialArticles)
 
-  const [newTitle, setNewTitle] = useState ('')
+  const [newTitle, setNewTitle] = useState ( {
+    title: '',
+    image: '',
+    content: '',
+    category: '',
+    tags: [],
+    published: false,
+  }
+  
+  )
 
 
   function addTitle(e){
@@ -55,12 +63,19 @@ function App() {
           </div>
 
           <div className="input-group mb-3">
-            <input type="text" className="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="button-addon2" value={newTitle}
+            <input type="text" 
+            className="form-control" 
+            placeholder="" 
+            aria-label="Recipient's username" 
+            aria-describedby="button-addon2" 
+            value={newTitle}
             onChange={e=> setNewTitle(e.target.value)}/>
-            <button className="btn btn-outline-secondary" type="button" id="button-addon2">Add</button>
           </div>
 
+          <button className="btn btn-outline-secondary" type="button" id="button-addon2">Add</button>
+
         </form>
+
         <p className="list-titles">List titles</p>
         <ul className="list-group">
                 {titles.map((title, index)=> <li key={index} className='list-group-item'>{title} <button
